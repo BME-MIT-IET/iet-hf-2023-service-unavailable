@@ -1,0 +1,46 @@
+<%- include('header') -%>
+
+        <h1 class="myheader">
+            <% if (typeof(route) === "undefined") { %>
+                Új útvonal
+            <% } else { %>
+                Útvonal szerkesztése
+            <% } %>
+        </h1>
+        <form method="post" action="<%=`/routes/${typeof(route) === 'undefined' ? 'new' : 'edit/' + route._id}`%>">
+            <div class="mb-3">
+                <label for="name" class="form-label">Útvonal neve</label>
+                <input class="form-control" id="name" name="name" placeholder="Útvonal neve..." value="<%= typeof route === 'undefined' ? '' : route.name %>">
+            </div>
+            <div class="row">
+                <div class="mb-3 col">
+                    <label for="length" class="form-label">Hossz (km)</label>
+                    <input type="number" class="form-control" id="length" name="distance" step="0.01" placeholder="Útvonal hossza..." value="<%= typeof route === 'undefined' ? '' : route.distance %>">
+                </div>
+                <div class="mb-3 col">
+                    <label for="elevation" class="form-label">Szintemelkedés (m)</label>
+                    <input type="number" class="form-control" id="elevation" name="elevation" placeholder="Szintemelkedés..." value="<%= typeof route === 'undefined' ? '' : route.elevation %>">
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="link" class="form-label">Link (pl. Strava, Futótérkép.hu, stb...)</label>
+                <input class="form-control" id="link" name="link" placeholder="Link..." value="<%= typeof route === 'undefined' ? '' : route.link %>">
+            </div>
+            <div class="flex">
+                <div class="flex2">
+                    <input type="submit" class="btn btn-success mybtn" value="Mentés">
+                    <a href="/" class="btn btn-secondary">Mégse</a>
+                </div>
+                <% if (typeof(route) !== "undefined") { %>
+                    <div>
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete-modal">Törlés</button>
+                    </div>
+                <% } %>
+            </div>
+        </form>
+    </div>
+    <% if (typeof(route) !== "undefined") { %>
+        <%- include('deleteModal', {route: route}) %>
+    <% } %>
+
+<%- include('footer') -%>

@@ -1,0 +1,54 @@
+<%- include('header') -%>
+        <div class="flex">
+            <h1 class="myheader">Útvonalak listája</h1>
+            <div class="vert-middle">
+                <a href="/routes/new" class="btn btn-success large-text">Új útvonal</a>
+            </div>
+
+        </div>
+        <% if (routes.length === 0) { %>
+            <p class="centered">Még nincs egy útvonal se. Legyen a tied az első!</p>
+        <% } else { %>
+            <table
+                class="table table-hover align-middle"
+                id="table"
+                data-toggle="table">
+                <thead>
+                    <th class="col-sm-4" data-sortable="true">Név</th>
+                    <th class="col-2" data-sortable="true">Hossz (km)</th>
+                    <th class="col-2" data-sortable="true">Szintemelkedés (m)</th>
+                    <th class="col-2" data-sortable="true">Teljesítések száma</th>
+                    <th class="col-2" data-sortable="false">&nbsp;</th>
+                </thead>
+                <tbody>
+                    <% routes.forEach(function(route) { %>
+                        <tr>
+                            <td><a href="<%=`/routes/show/${route._id}`%>" class="btn btn-link mylink"><%= route.name %></a></td>
+                            <td><%= route.distance %></td>
+                            <td><%= route.elevation %></td>
+                            <td><%= route.efforts %></td>
+                            <td class="middle-buttons">
+                                <a href="<%=`/routes/show/${route._id}`%>" class="btn btn-success mybtn"><i class="fas fa-medal"></i></a>
+                                <a href="<%=`/routes/edit/${route._id}`%>" class="btn btn-warning mybtn white" ><i class="fas fa-edit"></i></a>
+                                <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete-modal" onclick="fillDeleteModal(this, '<%= route._id %>')"><i class="fas fa-trash-alt"></i></button>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        <% } %>
+    </div>
+    <%- include('deleteModal', {route: {}}) %>
+    <script>
+        function fillDeleteModal(el, id) {
+            const titlePrefix = "Útvonal törlése - ";
+            const bodyPrefix = "Biztosan törlöd a(z) ";
+            const bodyPostfix = " útvonalat? Ezzel a hozzá tartozó teljesítések is törlődnek. Ezt később nem tudod visszavonni!";
+            const name = el.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.firstElementChild.innerHTML;
+            document.getElementById('modal-title').innerHTML = titlePrefix + name;
+            document.getElementById('modal-body').innerHTML = bodyPrefix + name + bodyPostfix;
+            document.getElementById('deleteSubmit').setAttribute('href', '/routes/del/' + id);
+        }
+    </script>
+    <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>
+<%- include('footer') -%>

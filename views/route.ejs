@@ -1,0 +1,151 @@
+<%- include('header') %>
+
+        <div class="flex">
+            <h1 class="myheader"><%= route.name %></h1>
+            <div class="vert-middle">
+                <a href="<%=`/routes/edit/${route._id}`%>" class="btn btn-success large-text">Szerkesztés</a>
+            </div>
+        </div>
+        <p>
+            Hossz: <%= route.distance %> km <br/>
+            Szintemelkedés: <%= route.elevation %> m <br/>
+            Link: <a class="mylink" rel="noopener noreferrer" target="_blank" href="<%= route.link %>"><%= route.link %></a>
+        </p>
+        <div class="flex">
+            <h2>Teljesítések</h2>
+            <div><button type="button" data-bs-toggle="modal" data-bs-target="#new-effort-modal" onclick="clearModal()" class="btn btn-success large-text">Új teljesítés</a></div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-lg-4">
+                <h3 class="centered">Túrázva</h3>
+                <% if (efforts.hiking.length === 0) { %>
+                    <p class="centered">Még senki sem teljesítette ezt az útvonalat ilyen módon. Legyél te az első!</p>
+                <% } else { %>
+                    <table class="table table-striped align-middle">
+                        <thead>
+                            <th><i class="fas fa-medal"></i></th>
+                            <th>Név</th>
+                            <th>Idő</th>
+                            <th>Módosítás</th>
+                        </thead>
+                        <tbody>
+                            <% efforts.hiking.forEach(function(effort, idx) { %>
+                                <tr>
+                                    <td><%= idx + 1%>.</td>
+                                    <td><%= effort.name %></td>
+                                    <td><%= effort.time %></td>
+                                    <td>
+                                        <div class="flex2">
+                                            <button class="btn btn-warning mybtn white" data-bs-toggle="modal" data-bs-target="#new-effort-modal" onclick="fillModal(this, 0, '<%= effort._id %>')"><i class="fas fa-edit"></i></button>
+                                            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete-modal" onclick="fillDeleteModal(this, '<%= effort._id %>', '<%= route._id %>')"><i class="fas fa-trash-alt"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                <% } %>
+            </div>
+            <div class="col-12 col-lg-4">
+                <h3 class="centered">Futva</h3>
+                <% if (efforts.running.length === 0) { %>
+                    <p class="centered">Még senki sem teljesítette ezt az útvonalat ilyen módon. Legyél te az első!</p>
+                <% } else { %>
+                    <table class="table table-striped align-middle">
+                        <thead>
+                            <th><i class="fas fa-medal"></i></th>
+                            <th>Név</th>
+                            <th>Idő</th>
+                            <th>Módosítás</th>
+                        </thead>
+                        <tbody>
+                            <% efforts.running.forEach(function(effort, idx) { %>
+                                <tr>
+                                    <td><%= idx + 1%>.</td>
+                                    <td><%= effort.name %></td>
+                                    <td><%= effort.time %></td>
+                                    <td>
+                                        <div class="flex2">
+                                            <button class="btn btn-warning mybtn white" data-bs-toggle="modal" data-bs-target="#new-effort-modal" onclick="fillModal(this, 1, '<%= effort._id %>')"><i class="fas fa-edit"></i></button>
+                                            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete-modal" onclick="fillDeleteModal(this, '<%= effort._id %>', '<%= route._id %>')"><i class="fas fa-trash-alt"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                <% } %>
+            </div>
+            <div class="col-12 col-lg-4">
+                <h3 class="centered">Kerékpározva</h3>
+                <% if (efforts.cycling.length === 0) { %>
+                    <p class="centered">Még senki sem teljesítette ezt az útvonalat ilyen módon. Legyél te az első!</p>
+                <% } else { %>
+                    <table class="table table-striped align-middle">
+                        <thead>
+                            <th><i class="fas fa-medal"></i></th>
+                            <th>Név</th>
+                            <th>Idő</th>
+                            <th>Módosítás</th>
+                        </thead>
+                        <tbody>
+                            <% efforts.cycling.forEach(function(effort, idx) { %>
+                                <tr>
+                                    <td><%= idx + 1%>.</td>
+                                    <td><%= effort.name %></td>
+                                    <td><%= effort.time %></td>
+                                    <td>
+                                        <div class="flex2">
+                                            <button class="btn btn-warning mybtn white" data-bs-toggle="modal" data-bs-target="#new-effort-modal" onclick="fillModal(this, 2, '<%= effort._id %>')"><i class="fas fa-edit"></i></button>
+                                            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete-modal" onclick="fillDeleteModal(this, '<%= effort._id %>', '<%= route._id %>')"><i class="fas fa-trash-alt"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                <% } %>
+            </div>
+        </div>
+
+    </div>
+    <!-- New/Edit effort modal -->
+    <div class="modal fade" id="new-effort-modal" tabindex="-1" role="dialog" aria-labelledby="new-effort-modalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="alert alert-danger" hidden role="alert" id="errors"></div>
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitle"><span id="titlePartOne">Új teljesítés</span> - Dobogó-kő túra</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="new-effort-form">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Teljesítő neve</label>
+                            <input class="form-control" id="name" name="name" placeholder="Név...">
+                        </div>
+                        <div class="mb-3">
+                            <label for="time" class="form-label">Teljesítés ideje (óó:pp:mm)</label>
+                            <input class="form-control" id="time" name="time" placeholder="Idő...">
+                        </div>
+                        <div class="mb-3">
+                            <label for="type" class="form-label">Teljesítés módja</label>
+                            <select class="form-select" id="type" name="type" >
+                                <option value="0" disabled selected>Válassz sportot...</option>
+                                <option value="1">Túra</option>
+                                <option value="2">Futás</option>
+                                <option value="3">Kerékpározás</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Mégse</button>
+                    <button type="button" id="newEditSubmit" class="btn btn-success" data-id="" onclick="onNewEditSubmit('<%= route._id %>')">Mentés</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('deleteModal', {route: {}}) %>
+    <script src="/route.js"></script>
+<%- include('footer') %>

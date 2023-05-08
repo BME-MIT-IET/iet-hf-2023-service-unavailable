@@ -1,0 +1,50 @@
+.mynav {
+    border-bottom-style: solid;
+    border-width: 1px;
+    border-color: #dcdcdc;
+}
+
+.myheader {
+    margin-top: 0.5rem;
+}
+
+#mynavcont {
+    justify-content: flex-start;
+}
+.flex {
+    display: flex;
+    justify-content: space-between;
+}
+.flex2 {
+    display: flex;
+    justify-content: flex-start;
+}
+.vert-middle {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.large-text {
+    font-size: 20px;
+}
+
+.mylink:link, .mylink:hover, .mylink:visited {
+    color: #198754!important;
+}
+
+.mybtn {
+    margin-right: 12px;
+}
+
+.centered {
+    text-align: center;
+}
+
+.white, .white:hover, .white:focus {
+    color: white;
+}
+
+.middle-buttons {
+    display: flex;
+    justify-content: center;
+}
