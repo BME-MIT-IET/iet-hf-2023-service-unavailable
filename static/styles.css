@@ -28,8 +28,10 @@
     font-size: 20px;
 }
 
-.mylink:link, .mylink:hover, .mylink:visited {
-    color: #198754!important;
+.mylink:link,
+.mylink:hover,
+.mylink:visited {
+    color: #198754 !important;
 }
 
 .mybtn {
@@ -40,7 +42,9 @@
     text-align: center;
 }
 
-.white, .white:hover, .white:focus {
+.white,
+.white:hover,
+.white:focus {
     color: white;
 }
 

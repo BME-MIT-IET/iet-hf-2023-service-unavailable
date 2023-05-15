@@ -5,13 +5,13 @@
  * @param {*} or
  * @returns
  */
-module.exports = or => {
+module.exports = (or) => {
     return (req, res, next) => {
-        res.locals.route.remove(err => {
+        res.locals.route.remove((err) => {
             if (err) {
                 return next(err)
             }
             return res.redirect('/')
         })
-    };
-};
+    }
+}

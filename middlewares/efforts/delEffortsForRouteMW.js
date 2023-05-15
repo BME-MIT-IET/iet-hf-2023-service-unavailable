@@ -5,13 +5,13 @@
  * @param {*} or
  * @returns
  */
-module.exports = or => {
+module.exports = (or) => {
     return (req, res, next) => {
-        or.EffortModel.deleteMany({_route: res.locals.route._id}, err => {
+        or.EffortModel.deleteMany({ _route: res.locals.route._id }, (err) => {
             if (err) {
                 return next(err)
             }
-            return next();
+            return next()
         })
-    };
-};
+    }
+}

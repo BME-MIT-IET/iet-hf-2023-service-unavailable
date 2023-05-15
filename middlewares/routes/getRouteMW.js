@@ -5,14 +5,17 @@
  * @param {*} or
  * @returns
  */
- module.exports = or => {
+module.exports = (or) => {
     return (req, res, next) => {
-        return or.RouteModel.findOne({ _id: req.params.route_id}, (err, route) => {
-            if (err) {
-                return next(err)
+        return or.RouteModel.findOne(
+            { _id: req.params.route_id },
+            (err, route) => {
+                if (err) {
+                    return next(err)
+                }
+                res.locals.route = route
+                return next()
             }
-            res.locals.route = route
-            return next();
-        })
-    };
-};
+        )
+    }
+}
