@@ -5,14 +5,17 @@
  * @param {*} or
  * @returns
  */
-module.exports = or => {
+module.exports = (or) => {
     return (req, res, next) => {
-        return or.EffortModel.findOne({ _id: req.params.effort_id }, (err, effort) => {
-            if (err) {
-                return next(err)
+        return or.EffortModel.findOne(
+            { _id: req.params.effort_id },
+            (err, effort) => {
+                if (err) {
+                    return next(err)
+                }
+                res.locals.effort = effort
+                return next()
             }
-            res.locals.effort = effort
-            return next();
-        })
-    };
-};
+        )
+    }
+}

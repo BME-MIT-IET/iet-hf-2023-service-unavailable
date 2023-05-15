@@ -5,13 +5,13 @@
  * @param {*} objectrepository
  * @returns
  */
-module.exports = objectrepository => {
+module.exports = (objectrepository) => {
     return (req, res, next) => {
-        res.locals.effort.remove(err => {
+        res.locals.effort.remove((err) => {
             if (err) {
                 return next(err)
             }
-            return res.redirect(`/routes/show/${res.locals.route._id}`);
+            return res.redirect(`/routes/show/${res.locals.route._id}`)
         })
-    };
-};
+    }
+}

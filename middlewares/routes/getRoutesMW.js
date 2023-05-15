@@ -5,14 +5,14 @@
  * @param {*} objectrepository
  * @returns
  */
-module.exports = or => {
+module.exports = (or) => {
     return (req, res, next) => {
         return or.RouteModel.find({}, (err, routes) => {
             if (err) {
                 return next(err)
             }
-            res.locals.routes = routes.map(route => route.toObject())
-            return next();
+            res.locals.routes = routes.map((route) => route.toObject())
+            return next()
         })
-    };
-};
+    }
+}
