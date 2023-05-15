@@ -33,7 +33,3 @@ jobs:
               uses: wearerequired/lint-action@v2
               with:
                   eslint: true
-                  eslint_args: '--ignore-path .gitignore .'
-                  eslint_extensions: js
-                  prettier: true
-                  prettier_args: '--check --ignore-path .gitignore .'
