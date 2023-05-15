@@ -1,0 +1,7 @@
+import './createEffort.cy'
+import './createEffortError.cy'
+import './deleteEffort.cy'
+import './goToEffortsPage.cy'
+import './updateEffort.cy'
+import './updateEffortError.cy'
+import './createMoreEfforts.cy'

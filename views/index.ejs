@@ -26,11 +26,11 @@
                             <td><a href="<%=`/routes/show/${route._id}`%>" class="btn btn-link mylink"><%= route.name %></a></td>
                             <td><%= route.distance %></td>
                             <td><%= route.elevation %></td>
-                            <td><%= route.efforts %></td>
+                            <td id="<%=`${route.name}_idx"`%>"><%= route.efforts %></td>
                             <td class="middle-buttons">
                                 <a href="<%=`/routes/show/${route._id}`%>" class="btn btn-success mybtn"><i class="fas fa-medal"></i></a>
                                 <a href="<%=`/routes/edit/${route._id}`%>" class="btn btn-warning mybtn white" ><i class="fas fa-edit"></i></a>
-                                <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete-modal" onclick="fillDeleteModal(this, '<%= route._id %>')"><i class="fas fa-trash-alt"></i></button>
+                                <button class="btn btn-danger delete" data-bs-toggle="modal" data-bs-target="#delete-modal" onclick="fillDeleteModal(this, '<%= route._id %>')"><i class="fas fa-trash-alt"></i></button>
                             </td>
                         </tr>
                     <% }) %>

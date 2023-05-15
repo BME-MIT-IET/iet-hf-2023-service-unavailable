@@ -1,22 +1,22 @@
 <%- include('header') %>
 
         <div class="flex">
-            <h1 class="myheader"><%= route.name %></h1>
+            <h1 id="routeTitle" class="myheader"><%= route.name %></h1>
             <div class="vert-middle">
                 <a href="<%=`/routes/edit/${route._id}`%>" class="btn btn-success large-text">Szerkesztés</a>
             </div>
         </div>
-        <p>
+        <p id="routeInfos">
             Hossz: <%= route.distance %> km <br/>
             Szintemelkedés: <%= route.elevation %> m <br/>
             Link: <a class="mylink" rel="noopener noreferrer" target="_blank" href="<%= route.link %>"><%= route.link %></a>
         </p>
         <div class="flex">
             <h2>Teljesítések</h2>
-            <div><button type="button" data-bs-toggle="modal" data-bs-target="#new-effort-modal" onclick="clearModal()" class="btn btn-success large-text">Új teljesítés</a></div>
+            <div><button id="newEffortBtn" type="button" data-bs-toggle="modal" data-bs-target="#new-effort-modal" onclick="clearModal()" class="btn btn-success large-text">Új teljesítés</a></div>
         </div>
         <div class="row">
-            <div class="col-12 col-lg-4">
+            <div id="hikingDiv" class="col-12 col-lg-4">
                 <h3 class="centered">Túrázva</h3>
                 <% if (efforts.hiking.length === 0) { %>
                     <p class="centered">Még senki sem teljesítette ezt az útvonalat ilyen módon. Legyél te az első!</p>
@@ -36,8 +36,8 @@
                                     <td><%= effort.time %></td>
                                     <td>
                                         <div class="flex2">
-                                            <button class="btn btn-warning mybtn white" data-bs-toggle="modal" data-bs-target="#new-effort-modal" onclick="fillModal(this, 0, '<%= effort._id %>')"><i class="fas fa-edit"></i></button>
-                                            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete-modal" onclick="fillDeleteModal(this, '<%= effort._id %>', '<%= route._id %>')"><i class="fas fa-trash-alt"></i></button>
+                                            <button id="editHikingBtn" class="btn btn-warning mybtn white" data-bs-toggle="modal" data-bs-target="#new-effort-modal" onclick="fillModal(this, 0, '<%= effort._id %>')"><i class="fas fa-edit"></i></button>
+                                            <button id="deleteHikingBtn" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete-modal" onclick="fillDeleteModal(this, '<%= effort._id %>', '<%= route._id %>')"><i class="fas fa-trash-alt"></i></button>
                                         </div>
                                     </td>
                                 </tr>
@@ -46,7 +46,7 @@
                     </table>
                 <% } %>
             </div>
-            <div class="col-12 col-lg-4">
+            <div id="runningDiv" class="col-12 col-lg-4">
                 <h3 class="centered">Futva</h3>
                 <% if (efforts.running.length === 0) { %>
                     <p class="centered">Még senki sem teljesítette ezt az útvonalat ilyen módon. Legyél te az első!</p>
@@ -76,7 +76,7 @@
                     </table>
                 <% } %>
             </div>
-            <div class="col-12 col-lg-4">
+            <div id="bikeDiv" class="col-12 col-lg-4">
                 <h3 class="centered">Kerékpározva</h3>
                 <% if (efforts.cycling.length === 0) { %>
                     <p class="centered">Még senki sem teljesítette ezt az útvonalat ilyen módon. Legyél te az első!</p>
@@ -140,7 +140,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Mégse</button>
+                    <button type="button" id="newEditCancel" class="btn btn-secondary" data-bs-dismiss="modal">Mégse</button>
                     <button type="button" id="newEditSubmit" class="btn btn-success" data-id="" onclick="onNewEditSubmit('<%= route._id %>')">Mentés</button>
                 </div>
             </div>
