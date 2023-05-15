@@ -25,6 +25,7 @@
   },
   "devDependencies": {
     "eslint": "^8.40.0",
+    "eslint-plugin-cypress": "^2.13.3",
     "prettier": "^2.8.8"
   }
 }
