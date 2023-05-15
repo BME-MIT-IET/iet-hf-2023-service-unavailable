@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 function clearModal() {
     document.getElementById('name').value = ''
     document.getElementById('time').value = ''
