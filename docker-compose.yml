@@ -9,14 +9,17 @@ services:
       - "3000:3000"
     depends_on:
       - mongo
+    networks:
+      - routing-network
     environment:
-       DATABASE_URL: mongodb://mongo:27017
+       DATABASE_URL: mongodb://mongo
   mongo:
     image: mongo
-    ports:
-      - 27017:27017
+    networks:
+      - routing-network
     volumes:
       - mongodb:/data/db
-
+networks:
+  routing-network:
 volumes:
   mongodb:
