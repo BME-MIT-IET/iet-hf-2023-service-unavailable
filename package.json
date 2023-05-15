@@ -5,7 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "nyc mocha"
+    "test": "nyc mocha",
+    "format:check": "prettier --check .",
+    "format:write": "prettier --write .",
+    "lint:check": "eslint .",
+    "lint:fix": "eslint --fix ."
   },
   "author": "",
   "license": "ISC",
@@ -14,7 +18,12 @@
     "cypress": "^12.12.0",
     "dotenv": "^16.0.3",
     "ejs": "^3.1.6",
+    "eslint-plugin-prettier": "^4.2.1",
     "express": "^4.17.1",
     "mongoose": "^6.4.6"
+  },
+  "devDependencies": {
+    "eslint": "^8.40.0",
+    "prettier": "^2.8.8"
   }
 }
