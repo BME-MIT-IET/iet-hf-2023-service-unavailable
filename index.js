@@ -11,7 +11,7 @@ app.use(express.static('static'))
 
 require('./routing/index')(app)
 
-app.use((err, req, res, next) => {
+app.use((err, req, res, _next) => {
     res.end('Problem...')
     console.log(err)
 })

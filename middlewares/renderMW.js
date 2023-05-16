@@ -3,7 +3,7 @@
  * @param {*} template filename of the template in /views
  * @returns
  */
-module.exports = (template, objRepo) => {
+module.exports = (template) => {
     return (req, res) => {
         res.render(template, res.locals)
     }

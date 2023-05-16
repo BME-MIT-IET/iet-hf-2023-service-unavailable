@@ -35,7 +35,7 @@ describe('saveEffort middleware ', function () {
             }
         }
 
-        saveEffortMW({ EffortModel: fakeEffortModel })(req, res, (err) => {
+        saveEffortMW({ EffortModel: fakeEffortModel })(req, res, () => {
             expect(0).to.be.eql(1)
         })
     })
@@ -71,7 +71,7 @@ describe('saveEffort middleware ', function () {
                 },
             },
         }
-        saveEffortMW()(req, res, (err) => {
+        saveEffortMW()(req, res, () => {
             expect(0).to.be.eql(1)
         })
     })
@@ -104,11 +104,11 @@ describe('saveEffort middleware ', function () {
         }
 
         const fakeEffortModel = class EffortModel {
-            save(cb) {
+            save() {
                 expect(0).to.be.eql(1)
             }
         }
-        saveEffortMW({ EffortModel: fakeEffortModel })(req, res, (err) => {
+        saveEffortMW({ EffortModel: fakeEffortModel })(req, res, () => {
             expect(0).to.be.eql(1)
         })
     })
@@ -140,11 +140,11 @@ describe('saveEffort middleware ', function () {
             },
         }
         const fakeEffortModel = class EffortModel {
-            save(cb) {
+            save() {
                 expect(0).to.be.eql(1)
             }
         }
-        saveEffortMW({ EffortModel: fakeEffortModel })(req, res, (err) => {
+        saveEffortMW({ EffortModel: fakeEffortModel })(req, res, () => {
             expect(0).to.be.eql(1)
         })
     })
@@ -175,11 +175,11 @@ describe('saveEffort middleware ', function () {
             },
         }
         const fakeEffortModel = class EffortModel {
-            save(cb) {
+            save() {
                 expect(0).to.be.eql(1)
             }
         }
-        saveEffortMW({ EffortModel: fakeEffortModel })(req, res, (err) => {
+        saveEffortMW({ EffortModel: fakeEffortModel })(req, res, () => {
             expect(0).to.be.eql(1)
         })
     })
@@ -199,7 +199,7 @@ describe('saveEffort middleware ', function () {
                     _id: 3,
                 },
             },
-            status: (code) => {
+            status: () => {
                 expect(1).to.be.eql(0)
             },
         }

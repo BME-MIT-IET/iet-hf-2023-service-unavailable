@@ -2,10 +2,9 @@
 
 /**
  * Deletes the effort in res.locals.effort and redirects to the route's page.
- * @param {*} objectrepository
  * @returns
  */
-module.exports = (objectrepository) => {
+module.exports = () => {
     return (req, res, next) => {
         res.locals.effort.remove((err) => {
             if (err) {
