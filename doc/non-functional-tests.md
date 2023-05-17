@@ -112,7 +112,7 @@ Ellenőrzöm, hogy milyen sebességgel tud sok kérést kiszolgáli a szervert. 
         [Wed May 17 2023 14:37:59 GMT+0200 (közép-európai nyári idő)] INFO Requests: 10093, requests per second: 178, mean latency: 8690.1 ms
         ```
     - Magyarázat:
-        - Ebből láthatjuk hogy a szerver kb. 180 kérést tud kiszolgálni egy másodperc alatt. Ez a teljesítmény ennél az alkalmazásnál megfelelő, viszont nem skálázható. Eezen javítani az alkalmazás  újraírása nélkül nem lehet
+        - Ebből láthatjuk hogy a szerver kb. 180 kérést tud kiszolgálni egy másodperc alatt. Ez a teljesítmény ennél az alkalmazásnál megfelelő, viszont nem skálázható. Ezen javítani az alkalmazás  újraírása nélkül nem lehet.
 - Főoldal betöltési ideje artillery:
     - Kiadott parancs: \
         ```artillery quick --count 20 --num 100 http://localhost:3000```
