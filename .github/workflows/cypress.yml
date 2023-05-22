@@ -19,3 +19,6 @@ jobs:
                   browser: chrome
                   build: npm i
                   start: npm start
+              env:
+                  environment:
+                      DATABASE_URL: mongodb://mongo
