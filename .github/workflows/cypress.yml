@@ -20,5 +20,4 @@ jobs:
                   build: npm i
                   start: npm start
               env:
-                  environment:
-                      DATABASE_URL: mongodb://mongo
+                  DATABASE_URL: mongodb://localhost
