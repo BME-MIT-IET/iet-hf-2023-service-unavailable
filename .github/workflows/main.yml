@@ -49,6 +49,7 @@ jobs:
               run: npm test
 
     cypress-run:
+        name: Run Cypress e2e tests
         runs-on: ubuntu-latest
         needs: [run-linter, run-unit-tests]
 
