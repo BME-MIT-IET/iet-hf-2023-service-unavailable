@@ -34,4 +34,4 @@ jobs:
               if: failure()
               with:
                   name: cypress-snapshots
-                  path: cypress/snapshots
+                  path: /home/runner/work/iet-hf-2023-service-unavailable/iet-hf-2023-service-unavailable/cypress/screenshots/
