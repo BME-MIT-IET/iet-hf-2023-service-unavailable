@@ -30,7 +30,7 @@ jobs:
               env:
                   DATABASE_URL: mongodb://test:password@127.0.0.1:27017
             - name: Upload screenshots
-              uses: actions/upload-artifact@latest
+              uses: actions/upload-artifact@v3
               if: failure()
               with:
                   name: cypress-snapshots
