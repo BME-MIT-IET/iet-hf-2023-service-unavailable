@@ -1,7 +1,52 @@
-name: Cypress Tests
+name: Main
+
 on: [push]
 
+permissions:
+    checks: write
+    contents: read
+
 jobs:
+    run-linter:
+        name: Run linter
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Check out Git repository
+              uses: actions/checkout@v2
+
+            - name: Set up Node.js 16
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 16
+
+            - name: Install Node.js dependencies
+              run: npm i
+
+            - name: Run linters
+              uses: wearerequired/lint-action@v2
+              with:
+                  eslint: true
+
+    run-unit-tests:
+        name: Run unit tests
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Check out Git repository
+              uses: actions/checkout@v2
+
+            - name: Set up Node.js 16
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 16
+
+            - name: Install Node.js dependencies
+              run: npm i
+
+            - name: Run tests
+              run: npm test
+
     cypress-run:
         runs-on: ubuntu-latest
 
