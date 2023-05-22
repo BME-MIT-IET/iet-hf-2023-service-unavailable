@@ -13,7 +13,7 @@ jobs:
 
         steps:
             - name: Check out Git repository
-              uses: actions/checkout@v2
+              uses: actions/checkout@v3
 
             - name: Set up Node.js 16
               uses: actions/setup-node@v3
@@ -31,10 +31,11 @@ jobs:
     run-unit-tests:
         name: Run unit tests
         runs-on: ubuntu-latest
+        needs: run-linter
 
         steps:
             - name: Check out Git repository
-              uses: actions/checkout@v2
+              uses: actions/checkout@v3
 
             - name: Set up Node.js 16
               uses: actions/setup-node@v3
@@ -49,6 +50,7 @@ jobs:
 
     cypress-run:
         runs-on: ubuntu-latest
+        needs: [run-linter, run-unit-tests]
 
         services:
             mongo:
