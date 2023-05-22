@@ -8,8 +8,11 @@ jobs:
         services:
             mongo:
                 image: mongo
+                env:
+                    MONGO_INITDB_ROOT_USERNAME: test
+                    MONGO_INITDB_ROOT_PASSWORD: password
                 options: >-
-                    --health-cmd mongo
+                    --health-cmd "echo 'db.runCommand("ping").ok' | mongosh --quiet"
                     --health-interval 10s
                     --health-timeout 5s
                     --health-retries 5
@@ -25,4 +28,4 @@ jobs:
                   browser: chrome
                   start: npm start
               env:
-                  DATABASE_URL: mongodb://127.0.0.1
+                  DATABASE_URL: mongodb://test:password@127.0.0.1:27017
