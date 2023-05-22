@@ -13,7 +13,8 @@ var recDelete = () => {
 }
 
 describe('createMoreEfforts', () => {
-    beforeEach(() => {
+    it('user should be able to create more efforts', () => {
+        //remove unnecessary routes
         cy.visit('http://localhost:3000/')
         cy.get('#newRouteBtn').click()
 
@@ -31,15 +32,12 @@ describe('createMoreEfforts', () => {
         cy.get('.delete').then(($value) => {
             if ($value.length) {
                 length = $value.length
-                console.log(length)
                 recDelete()
             }
         })
         // eslint-disable-next-line cypress/no-unnecessary-waiting
         cy.wait(500)
-    })
 
-    it('user should be able to create more efforts', () => {
         cy.visit('http://localhost:3000/')
         cy.get('#newRouteBtn').click()
         cy.url().should('equal', 'http://localhost:3000/routes/new')
