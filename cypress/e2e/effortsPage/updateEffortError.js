@@ -1,4 +1,4 @@
-describe('updateEffort', () => {
+module.exports = () => {
     it('user should be able to update an effort and get the correct error messages', () => {
         cy.visit('http://localhost:3000/')
         cy.get('#newRouteBtn').click()
@@ -27,7 +27,7 @@ describe('updateEffort', () => {
         cy.get('#bikeDiv').contains('15:25:30').should('not.exist')
 
         cy.get('#editHikingBtn').click()
-        cy.get('#name').clear()
+        cy.get('#name').clear({ force: true })
         cy.get('#time').clear({ force: true })
 
         cy.get('#newEditSubmit').click()
@@ -40,7 +40,7 @@ describe('updateEffort', () => {
 
         cy.get('#errors').contains('Add meg a teljesítés időtartamát!')
 
-        cy.get('#name').clear()
+        cy.get('#name').clear({ force: true })
         cy.get('#time').type('15:25:36', { force: true })
         cy.get('#newEditSubmit').click()
 
@@ -72,4 +72,4 @@ describe('updateEffort', () => {
             'Érvénytelen időformátum! Helyesen: óó:pp:mm'
         )
     })
-})
+}

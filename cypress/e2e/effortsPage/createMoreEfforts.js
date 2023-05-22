@@ -12,7 +12,7 @@ var recDelete = () => {
     }
 }
 
-describe('createMoreEfforts', () => {
+module.exports = () => {
     it('user should be able to create more efforts', () => {
         //remove unnecessary routes
         cy.visit('http://localhost:3000/')
@@ -101,4 +101,4 @@ describe('createMoreEfforts', () => {
         cy.get('#navTitle').click()
         cy.get('#UltraBalaton_idx').contains('3')
     })
-})
+}

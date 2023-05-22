@@ -1,4 +1,4 @@
-describe('createEffortError', () => {
+module.exports = () => {
     it('user should be able to create a new effort and get the correct error messages', () => {
         cy.visit('http://localhost:3000/')
         cy.get('#newRouteBtn').click()
@@ -82,4 +82,4 @@ describe('createEffortError', () => {
         cy.get('#bikeDiv').contains('Elek').should('not.exist')
         cy.get('#bikeDiv').contains('15:25:36').should('not.exist')
     })
-})
+}
