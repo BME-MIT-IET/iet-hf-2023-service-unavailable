@@ -35,7 +35,6 @@ describe('RouteTests', () => {
         cy.get('.delete').then(($value) => {
             if ($value.length) {
                 length = $value.length
-                console.log(length)
                 recDelete()
             }
         })
