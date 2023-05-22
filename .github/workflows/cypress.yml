@@ -17,7 +17,6 @@ jobs:
               uses: cypress-io/github-action@v5
               with:
                   browser: chrome
-                  build: npm i
                   start: npm start
               env:
-                  DATABASE_URL: mongodb://localhost
+                  DATABASE_URL: mongodb://mongo
