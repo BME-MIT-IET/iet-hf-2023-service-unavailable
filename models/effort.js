@@ -1,5 +1,5 @@
-const Schema = require('mongoose').Schema;
-const db = require('../config/db');
+const Schema = require('mongoose').Schema
+const db = require('../config/db')
 
 const Effort = db.model('Effort', {
     name: String,
@@ -7,8 +7,8 @@ const Effort = db.model('Effort', {
     type: Number,
     _route: {
         type: Schema.Types.ObjectId,
-        ref: 'Route'
-    }
-});
+        ref: 'Route',
+    },
+})
 
-module.exports = Effort;
+module.exports = Effort

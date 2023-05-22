@@ -5,23 +5,25 @@
  * @param {*} or
  * @returns
  */
- module.exports = or => {
+module.exports = (or) => {
     return (req, res, next) => {
-        res.locals.title = "Útvonalmegosztó"
-        Promise.all(res.locals.routes.map(route => (
-            or.EffortModel.count({ _route: route._id}).exec()
-        )))
-        .then(values => {
-            res.locals.routes.forEach((route, idx) => {
-                route.efforts = values[idx]
+        res.locals.title = 'Útvonalmegosztó'
+        Promise.all(
+            res.locals.routes.map((route) =>
+                or.EffortModel.count({ _route: route._id }).exec()
+            )
+        )
+            .then((values) => {
+                res.locals.routes.forEach((route, idx) => {
+                    route.efforts = values[idx]
+                })
+                res.locals.routes.sort((firstE, secondE) => {
+                    return secondE.efforts - firstE.efforts
+                })
+                return next()
             })
-            res.locals.routes.sort((firstE, secondE) => {
-                return secondE.efforts - firstE.efforts
+            .catch((err) => {
+                return next(err)
             })
-            return next();
-        })
-        .catch(err => {
-            return next(err)
-        })
-    };
-};
+    }
+}

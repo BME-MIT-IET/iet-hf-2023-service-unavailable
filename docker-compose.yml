@@ -1,0 +1,25 @@
+version: '3'
+services:
+  node:
+    build: .
+    volumes:
+      - .:/usr/app/
+      - /usr/app/node_modules
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo
+    networks:
+      - routing-network
+    environment:
+       DATABASE_URL: mongodb://mongo
+  mongo:
+    image: mongo
+    networks:
+      - routing-network
+    volumes:
+      - mongodb:/data/db
+networks:
+  routing-network:
+volumes:
+  mongodb:
