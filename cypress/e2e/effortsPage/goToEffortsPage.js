@@ -1,4 +1,4 @@
-describe('goToEffortsPage', () => {
+module.exports = () => {
     it('user should be able to create a new route and get to the efforts page', () => {
         cy.visit('http://localhost:3000/')
 
@@ -16,4 +16,4 @@ describe('goToEffortsPage', () => {
         cy.get('input[type=submit]').click()
         cy.url().should('include', 'http://localhost:3000/routes/show/')
     })
-})
+}

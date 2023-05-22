@@ -1,4 +1,4 @@
-describe('updateEffort', () => {
+module.exports = () => {
     it('user should be able to update an effort', () => {
         cy.visit('http://localhost:3000/')
         cy.get('#newRouteBtn').click()
@@ -68,4 +68,4 @@ describe('updateEffort', () => {
         cy.get('#bikeDiv').contains('Jónás')
         cy.get('#bikeDiv').contains('10:20:30')
     })
-})
+}

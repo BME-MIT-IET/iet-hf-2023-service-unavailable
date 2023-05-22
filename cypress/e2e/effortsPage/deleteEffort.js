@@ -1,4 +1,4 @@
-describe('deleteEffort', () => {
+module.exports = () => {
     it('user should be able delete an effort', () => {
         cy.visit('http://localhost:3000/')
         cy.get('#newRouteBtn').click()
@@ -46,4 +46,4 @@ describe('deleteEffort', () => {
         cy.get('#bikeDiv').contains('Száraz Dániel').should('not.exist')
         cy.get('#bikeDiv').contains('15:25:36').should('not.exist')
     })
-})
+}

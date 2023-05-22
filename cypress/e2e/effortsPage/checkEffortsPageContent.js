@@ -1,4 +1,4 @@
-describe('checkEffortsPageContent', () => {
+module.exports = () => {
     it('user should be able to see valid and grammatically correct information', () => {
         cy.visit('http://localhost:3000/')
         cy.get('#newRouteBtn').click()
@@ -63,4 +63,4 @@ describe('checkEffortsPageContent', () => {
             'Még senki sem teljesítette ezt az útvonalat ilyen módon. Legyél te az első!'
         )
     })
-})
+}
