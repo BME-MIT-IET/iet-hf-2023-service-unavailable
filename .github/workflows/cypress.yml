@@ -8,7 +8,17 @@ jobs:
         services:
             mongo:
                 image: mongo
-
+                env:
+                    MONGO_INITDB_ROOT_USERNAME: test
+                    MONGO_INITDB_ROOT_PASSWORD: password
+                    MONGO_INITDB_DATABASE: test
+                options: >-
+                    --health-cmd mongo
+                    --health-interval 10s
+                    --health-timeout 5s
+                    --health-retries 5
+                ports:
+                    - 27017:27017
         steps:
             - name: Checkout
               uses: actions/checkout@v2
@@ -19,4 +29,4 @@ jobs:
                   browser: chrome
                   start: npm start
               env:
-                  DATABASE_URL: mongodb://mongo
+                  DATABASE_URL: mongodb://test:password@127.0.0.1:27017
