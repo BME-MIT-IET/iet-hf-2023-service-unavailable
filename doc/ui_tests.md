@@ -15,8 +15,8 @@ A tesztek alatt minden útvonalat bejártunk.
 A tesztelés során teszteltünk minden lehetséges felhasználói műveletet:
 - olvasás
 - létrehozás
-- módosítást
-- törlést
+- módosítás
+- törlés
 - sorbarendezés
 
 Ezeket megfelelő és hibás formátumú bemenetekkel is teszteltük. Ezenkívül a képernyőn megjelenő feliratok helyességét, a megfelelő visszajelzés és hibaüzenetek meglétét is ellenőriztük.
@@ -50,6 +50,6 @@ A tesztek a rendszer néhány apróbb hibáját előhozták, ezek a következőe
 
 Ezen hibák egyszerűen javíthatóak, azonban egy éles rendszerben ezek jelenléte figyelmetlenségre utal, és az időtartamok akár még súlyos problémát is okozhatnak.
 A megtalálásuk az UI teszteken kívül esetleg az oldal manuális végigjárásával történhetett volna, azonban ez a módszer esetén az emberi tényező nagyobb.
-Így az elkészített tesztek mindenképp hasznosok és fontos problémákat tártak fel.
+Így az elkészített tesztek mindenképp hasznosak és fontos problémákat tártak fel.
 
 Mivel a feladatunk nem ezen hibák kijavítása, hanem a tesztekkel a potenciális hibák felfedezése volt - ami sikerült - ezért ezeket nem javítottuk ki a projektben.
